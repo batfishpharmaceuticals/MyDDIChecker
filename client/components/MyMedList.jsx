@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import Med from './MyMedList';
+// import React, { Component } from 'react';
 
-
-export default MyMedList;
+// export default MyMedList;

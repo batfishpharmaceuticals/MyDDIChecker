@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
 
 
-export default Login;
+
+export default CDMed;

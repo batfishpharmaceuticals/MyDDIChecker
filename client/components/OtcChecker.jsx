@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
 
 
 
-export default OtcChecker;
+// export default OtcChecker;
