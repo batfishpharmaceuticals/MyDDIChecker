@@ -14,9 +14,9 @@ class SignupForm extends Component {
         const value = event.target.value;
         this.setState({ [label]: value });
     };
-    // Send the form data to the back-end, to create a new user account // Post request
+    // Send the form data to the backend to create a new user account // Post request
     handleSubmit = () => {
-        const body = {...state};
+        const body = {...this.state};
         fetch('/user/signUp', {
             method: 'POST',
             headers: {
@@ -28,10 +28,11 @@ class SignupForm extends Component {
 
     render() {
         return (
-            <div>
-                <p>Username<input onChange={this.handleChange} label='username'></input></p>
-                <p>Password<input type='password' onChange={this.handleChange} label='password'></input></p> 
-                <button type="submit" onClick={() => {this.handleSubmit(); this.props.displayHandleClick();}}>Submit</button>
+            <div id='SignupForm'>
+                <h2>Create A New Account</h2>
+                <p id='username'>Username<input onChange={this.handleChange} label='username'></input></p>
+                <p id='password'>Password<input type='password' onChange={this.handleChange} label='password'></input></p> 
+                <button type="submit" onClick={() => {this.handleSubmit(); this.props.homeHandleClick();}}>Create Account</button>
             </div>
         )
     };
