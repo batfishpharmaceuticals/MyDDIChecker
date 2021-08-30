@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 // global err catcher
 app.use( (err, req, res, next) => {
   console.log(err);
-  res.status(500).send('Internal Server Error');
+  res.status(500).send('Internal Server Error: '+ err.err);
 })
 
 // connect to db and add listener
