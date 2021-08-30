@@ -9,10 +9,10 @@ class MyMedsDisplay extends Component {
             rxInput: '',
             rxData: []
         }
-        // Bind this to the functions
+        this.handleAddRx = this.handleAddRx.bind(this);
     }
     
-    // Fetch user perscription data on page load
+    // Fetch user prescription data on page load
     componentDidMount() {
         this.setState({ rxData: this.props.rxData })
     }
@@ -25,7 +25,7 @@ class MyMedsDisplay extends Component {
 
     // Button logic to add an Rx
     handleAddRx(userId, ...rx){
-        // Add Rx to db
+        console.log(rx);
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -34,10 +34,8 @@ class MyMedsDisplay extends Component {
         fetch('/user/addRx', options)
             .then(res => res.json())
             .then(res => {
-                // check if rx was added successfully, if so add to db
-                // is res.body the added rx?
                 this.setState(prevState => ({
-                   rxData: [...prevState, ...rx]
+                   rxData: [...prevState.rxData, {name: rx[0], id: res.id}]
                 }))
             })
             .catch(err => console.log('MyMedsDisplay.handleAddRx: get status: ERROR: ', err));
@@ -64,7 +62,7 @@ class MyMedsDisplay extends Component {
     render() {
         return (
             <div id='MyMedsDisplay'>
-                <MyMedList input={this.state.input} handleChange={this.handleChange} userId={this.props.userId} rxData={this.state.rxData} handleAddRx={handleAddRx} handleDeleteRx={handleDeleteRx}/>
+                <MyMedList rxInput={this.state.rxInput} handleChange={this.handleChange} userId={this.props.userId} rxData={this.state.rxData} handleAddRx={this.handleAddRx}/>
                 <OtcChecker />
             </div>
         )

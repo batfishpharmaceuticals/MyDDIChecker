@@ -29,7 +29,7 @@ userController.findOne = async (req, res, next) => {
 userController.verifyUser = async (req, res, next) => {
   try {
     console.log('Verifying user!')
-    if (!res.locals.user) {
+    if (res.locals.user) {
       const { password } = req.body;
       const user = res.locals.user;
 
@@ -68,11 +68,12 @@ userController.addRx = async (req, res, next) => {
     console.log('addRx 66: ', rx, id)
 
     const user = await User.findOneAndUpdate( 
-      {id: userId}, 
+      {_id: userId}, 
       {$push: {
         rxs: {name: rx[0], rxId: id}
       }}, 
       {new: true}).exec();
+    console.log(user)
 
     res.locals.id = id;
     

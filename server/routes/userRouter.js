@@ -14,7 +14,8 @@ router.post('/login',
   userController.findOne,
   userController.verifyUser, 
   (req, res) => {
-  res.status(200).json( { match: res.locals.match,
+    // const rxNames = res.locals.user.rxs( rx => rx.name);
+    res.status(200).json( { match: res.locals.match,
     rxs: res.locals.user.rxs,
     id: res.locals.user.id });
 })

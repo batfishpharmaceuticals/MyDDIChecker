@@ -1,5 +1,6 @@
 import Rx from '../models/rxModel.js';
 
+
 const rxController = {};
 
 rxController.getRx = async (req, res, next) => {
@@ -9,9 +10,10 @@ rxController.getRx = async (req, res, next) => {
     const { rx } = req.body;
 
     const foundRxs = [];
-    for (let i = 0; i < rxs.length; i++) {
-      const result = await findOne({ name: rxs[i].name }).exec()
-      if (!result.hasOwnProperty('name')) {
+    for (let i = 0; i < rx.length; i++) {
+      console.log(rx[i]);
+      const result = await Rx.findOne({ name: rx[i] }).exec()
+      if (!result) {
         throw "Rx does not exist.";
       }
       foundRxs.push(result);
