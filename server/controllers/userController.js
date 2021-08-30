@@ -17,7 +17,7 @@ userController.createUser = async (req, res, next) => {
 userController.findOne = async (req, res, next) => {
   try {
     const { username } = req.body;
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({ username: username }).exec();
     console.log(user)
     res.locals.user = user;
     return next();
@@ -29,13 +29,21 @@ userController.findOne = async (req, res, next) => {
 userController.verifyUser = async (req, res, next) => {
   try {
     console.log('Verifying user!')
-    const { password } = req.body;
-    const user = res.locals.user;
+    if (res.locals.user) {
+      const { password } = req.body;
+      const user = res.locals.user;
 
-    const match = await user.comparePasswords(password, user.password);
+      const match = await user.comparePasswords(password, user.password);
 
-    res.locals.match = match;
-    console.log(match)
+      res.locals.match = match;
+      if (!match) {
+        res.locals.user.rx = [];
+      }
+      console.log(match)
+    } else {
+      res.locals.match = false;
+      res.locals.user = {rxs: [], id: ''};
+    }
 
     return next();
   } catch (err) {
@@ -55,13 +63,19 @@ userController.logOut = async (req, res, next) => {
 
 userController.addRx = async (req, res, next) => {
   try {
-    console.log("addRx user!")
-    const { username, rx } = req.body;
+    const { userId, rx } = req.body;
     const { id } = res.locals.rxs[0];
+    console.log('addRx 66: ', rx, id)
 
-    const user = await User.findOneAndUpdate( {username}, {$push: {rxs: {name: rx, rxId: id}}}, {new: true});
+    const user = await User.findOneAndUpdate( 
+      {_id: userId}, 
+      {$push: {
+        rxs: {name: rx[0], rxId: id}
+      }}, 
+      {new: true}).exec();
+    console.log(user)
 
-    res.locals.rx_id = rx_id;
+    res.locals.id = id;
     
     return next();
 
@@ -73,6 +87,14 @@ userController.addRx = async (req, res, next) => {
 userController.deleteRx = async (req, res, next) => {
   try {
     console.log("deleteRx user!")
+    const { id } = req.body;
+    
+    const user = await User.findOneAndUpdate( 
+      {username}, 
+      {$pull: {
+        rxs: {rxId: id}
+      }}, 
+      {new: true}).exec();
     
     return next();
 

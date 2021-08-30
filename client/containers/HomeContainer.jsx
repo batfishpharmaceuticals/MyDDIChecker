@@ -38,6 +38,7 @@ class HomeContainer extends Component {
         })
           .then(res => res.json())
           .then((res) => {
+              console.log('hello it me loginSubmit')
               if (res.match === true) this.setState({ view: 'display', userId: res.id, rxData: res.rxs });
             //   if (username === 'test') this.setState({ view: 'display' });
           })

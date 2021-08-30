@@ -14,21 +14,27 @@ router.post('/login',
   userController.findOne,
   userController.verifyUser, 
   (req, res) => {
-  // res.redirect(/home)?
-  
-  res.status(200).json( res.locals.match );
+    // const rxNames = res.locals.user.rxs( rx => rx.name);
+    res.status(200).json( { match: res.locals.match,
+    rxs: res.locals.user.rxs,
+    id: res.locals.user.id });
 })
 
 router.post('/logout', 
   userController.logOut, 
   (req, res) => {
-  //res.redirect(/login)?
+  res.status(200).send('Logged out!');
 })
 
 router.post('/addRx', rxController.getRx, 
   userController.addRx, 
   (req, res) => {
-  res.status(200).send('Added Rx!');
+  res.status(200).json( res.locals.id );
+})
+
+router.post('/deleteRx', userController.deleteRx, 
+  (req, res) => {
+  res.status(200).send('Deleted!');
 })
 
 export default router;
