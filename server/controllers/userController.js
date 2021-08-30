@@ -18,7 +18,6 @@ userController.findOne = async (req, res, next) => {
   try {
     const { username } = req.body;
     const user = await User.findOne({ username: username }).exec();
-    console.log(user)
     res.locals.user = user;
     return next();
   } catch (err) {
@@ -28,7 +27,6 @@ userController.findOne = async (req, res, next) => {
 
 userController.verifyUser = async (req, res, next) => {
   try {
-    console.log('Verifying user!')
     if (res.locals.user) {
       const { password } = req.body;
       const user = res.locals.user;
@@ -39,7 +37,6 @@ userController.verifyUser = async (req, res, next) => {
       if (!match) {
         res.locals.user.rx = [];
       }
-      console.log(match)
     } else {
       res.locals.match = false;
       res.locals.user = {rxs: [], id: ''};
@@ -65,7 +62,6 @@ userController.addRx = async (req, res, next) => {
   try {
     const { userId, rx } = req.body;
     const { id } = res.locals.rxs[0];
-    console.log('addRx 66: ', rx, id)
 
     const user = await User.findOneAndUpdate( 
       {_id: userId}, 
@@ -73,7 +69,6 @@ userController.addRx = async (req, res, next) => {
         rxs: {name: rx[0], rxId: id}
       }}, 
       {new: true}).exec();
-    console.log(user)
 
     res.locals.id = id;
     

@@ -24,7 +24,7 @@ class MyMedsDisplay extends Component {
     };
 
     // Button logic to add an Rx
-    handleAddRx(userId, ...rx){
+    handleAddRx(userId, ...rx) {
         console.log(rx);
         const options = {
             method: 'POST',
@@ -63,7 +63,7 @@ class MyMedsDisplay extends Component {
         return (
             <div id='MyMedsDisplay'>
                 <MyMedList rxInput={this.state.rxInput} handleChange={this.handleChange} userId={this.props.userId} rxData={this.state.rxData} handleAddRx={this.handleAddRx}/>
-                <OtcChecker />
+                <OtcChecker rxData={this.state.rxData}/>
             </div>
         )
     }

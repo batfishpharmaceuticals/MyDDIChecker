@@ -70,9 +70,31 @@ input {
 }
 
 #medListBox {
-    border-style: solid;
-    width: 100px;
-    height: 100px;
+    width: 350px;
+    height: 400px;
+    background-color: #89b0ae;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+#medBox {
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-radius: 35px;
+    background-color: #ffeedd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+#addMedButton {
+    background-color: #b8b8ff;
+    color: white;
+    opacity: 100%;
+    margin-left: 10px;
+}
+
+#LoginButton {
+    margin-top: 15px;
 }
