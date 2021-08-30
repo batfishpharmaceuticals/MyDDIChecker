@@ -19,11 +19,16 @@ module.exports = {
       'Access-Control-Allow-Origin': '*',
     },
     proxy: {
-      '/api/**': {
+      '/user/**': {
         target: 'http://localhost:3000',
         secure: false,
         changeOrigin: true,
       },
+      '/rx/**': {
+        target: 'http://localhost:3000',
+        secure: false,
+        changeOrigin: true,
+      }
     },
   },
   module: {
