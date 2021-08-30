@@ -10,6 +10,8 @@ class HomeContainer extends Component {
         super(props);
         this.state = {
             view: 'home',
+            userId: '',
+            rxData: []
         }
         this.homeHandleClick = this.homeHandleClick.bind(this);
         this.formHandleClick = this.formHandleClick.bind(this);
@@ -24,10 +26,10 @@ class HomeContainer extends Component {
     formHandleClick = () => {
         this.setState({ view: 'form' });
     }
-
+    // Send post request to the backend when the login button is clicked
     handleLoginSubmit = (username, password) => {
         const body = {username, password};
-        fetch('/user/signUp', {
+        fetch('/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +38,7 @@ class HomeContainer extends Component {
         })
           .then(res => res.json())
           .then((res) => {
-              if (res.status === 200) this.setState({ view: 'display' });
+              if (res.match === true) this.setState({ view: 'display', userId: res.id, rxData: res.rxs });
             //   if (username === 'test') this.setState({ view: 'display' });
           })
           .catch(err => console.log('LoginButton.handleLoginSubmit: get status: ERROR: ', err));
@@ -62,7 +64,7 @@ class HomeContainer extends Component {
         else if (this.state.view === 'display') { // This is the main app
             return (
                 <div>
-                    <MyMedsDisplay />
+                    <MyMedsDisplay userId={this.state.userId} rxData={this.state.rxData}/>
                 </div>
             )
         }
