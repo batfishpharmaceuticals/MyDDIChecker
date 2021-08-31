@@ -10,12 +10,9 @@ const MyMedList = props => {
     };
     return (
         <div id='medListBox'>
-            <p>TEST</p>
             <div>{medList}</div>
             <input type='text' onChange={props.handleChange} label='rxInput'/>
-            <div id='addMedButton'>
-                <button onClick={() => {props.handleAddRx(props.userId, props.rxInput)}}>Add Med</button>
-            </div>
+            <button id='addMedButton' onClick={() => {props.handleAddRx(props.userId, props.rxInput)}}>Add Med</button>
         </div>
     );
 }

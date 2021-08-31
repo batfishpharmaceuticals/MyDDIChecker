@@ -7,11 +7,12 @@ rxController.getRx = async (req, res, next) => {
   try {
     console.log('Getting Rxs!')
 
-    const { rx } = req.body;
+    let { rx } = res.locals;
+
+    if (rx === undefined) rx = req.body.rx
 
     const foundRxs = [];
     for (let i = 0; i < rx.length; i++) {
-      console.log(rx[i]);
       const result = await Rx.findOne({ name: rx[i] }).exec()
       if (!result) {
         throw "Rx does not exist.";
@@ -37,6 +38,7 @@ rxController.findInteractions = (req, res, next) => {
   })
 
   res.locals.interactions = interactions;
+  return next();
 }
 
 

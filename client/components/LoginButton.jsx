@@ -17,10 +17,10 @@ class LoginButton extends Component {
 
   render() {
       return (
-          <div id='LoginButton'>
+          <div id='LoginBox'>
               <p id='username'>Username<input onChange={this.handleChange} label='username'></input></p>
-              <p id='password'>Password<input type='password' onChange={this.handleChange} label='password'></input></p> 
-              <button type="submit" onClick={() => this.props.handleLoginSubmit(this.state.username, this.state.password)}>Login</button>
+              <p id='password'>Password <input type='password' onChange={this.handleChange} label='password'></input></p> 
+              <button id="LoginButton" type="submit" onClick={() => this.props.handleLoginSubmit(this.state.username, this.state.password)}>Login</button>
           </div>
       )
   };
