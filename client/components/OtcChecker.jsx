@@ -46,7 +46,6 @@ class OtcChecker extends Component {
     }
     return (
       <div id="OtcCheckerBox">
-        <p>OTC CHECKER</p>
         <input type="text" onChange={this.handleChange} label="input"/>
         <button type="submit" onClick={() => this.handleOtcSubmit(this.props.rxData, this.state.input)}>Check For Interactions</button> 
       </div>

@@ -90,11 +90,13 @@ input {
 
 #addMedButton {
     background-color: #b8b8ff;
-    color: white;
-    opacity: 100%;
     margin-left: 10px;
 }
 
 #LoginButton {
     margin-top: 15px;
+}
+
+#OtcCheckerBox {
+    margin-top: 40px;
 }
