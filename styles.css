@@ -1,0 +1,100 @@
+html {
+    background-color: #faf9f9;
+}
+
+h1 {
+    color: #555b6e;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Asap', sans-serif;
+    text-align: center;
+    color: #555b6e;
+    font-size: 18px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 400px;
+    height: 600px;
+    background-color: #bee3db;
+    border-radius: 35px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #89b0ae;
+    color: white;
+    opacity: 70%;
+    border-radius: 35px;
+    border: none;
+    font-family: 'Asap', sans-serif;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+button:hover {
+    cursor: pointer;
+    opacity: 100%;
+}
+
+p {
+    margin: 8px;
+}
+
+input {
+    width: 50%;
+    height: 20px;
+    padding: 5px;
+    margin-left: 5px;
+    background-color: #faf9f9;
+    border-radius: 35px;
+    border: none;
+    font-family: 'Asap', sans-serif;
+}
+
+#SignupForm {
+    margin-bottom: 90px;
+}
+
+#HomePage {
+    margin-bottom: 90px;
+}
+
+#medListBox {
+    width: 350px;
+    height: 400px;
+    background-color: #89b0ae;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#medBox {
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-radius: 35px;
+    background-color: #ffeedd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+#addMedButton {
+    background-color: #b8b8ff;
+    color: white;
+    opacity: 100%;
+    margin-left: 10px;
+}
+
+#LoginButton {
+    margin-top: 15px;
+}
