@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
 import MyMedList from './MyMedList.jsx';
 import OtcChecker from './OtcChecker.jsx';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
+
+const mapDispatchToProps = dispatch => ({
+    addRx: (rxInput) => dispatch(actions.AddRx(rxInput)),
+});
 
 class MyMedsDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = {
             rxInput: '',
-            rxData: []
+            // rxData: []
         }
         this.handleAddRx = this.handleAddRx.bind(this);
     }
     
     // Fetch user prescription data on page load
-    componentDidMount() {
-        this.setState({ rxData: this.props.rxData })
-    }
+    // componentDidMount() {
+    //     this.setState({ rxData: this.props.rxData })
+    // }
 
-    handleChange = (event) => {
-        const label = event.target.getAttribute('label');
-        console.log('label', label);
-        const value = event.target.value;
-        // [label] is this.state.rxInput
-        this.setState({ [label]: value });
-    };
+    // handleChange = (event) => {
+    //     const label = event.target.getAttribute('label');
+    //     console.log('label', label);
+    //     const value = event.target.value;
+    //     // [label] is this.state.rxInput
+    //     this.setState({ [label]: value });
+    // };
 
     // Button logic to add an Rx
     handleAddRx(userId, ...rx) {
-        console.log(rx);
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -36,9 +41,10 @@ class MyMedsDisplay extends Component {
         fetch('/user/addRx', options)
             .then(res => res.json())
             .then(res => {
-                this.setState(prevState => ({
-                   rxData: [...prevState.rxData, {name: rx[0], id: res.id}]
-                }))
+                // this.setState(prevState => ({
+                //    rxData: [...prevState.rxData, {name: rx[0], id: res.id}]
+                // }))
+                this.props.addRx({name: rx[0], id: res.id});
             })
             .catch(err => console.log('MyMedsDisplay.handleAddRx: get status: ERROR: ', err));
     }
@@ -64,11 +70,11 @@ class MyMedsDisplay extends Component {
     render() {
         return (
             <div id='MyMedsDisplay'>
-                <MyMedList rxInput={this.state.rxInput} handleChange={this.handleChange} userId={this.props.userId} rxData={this.state.rxData} handleAddRx={this.handleAddRx}/>
-                <OtcChecker rxData={this.state.rxData}/>
+                <MyMedList rxInput={this.state.rxInput} handleChange={(e) => this.setState({ rxInput: e.target.value })} userId={this.props.userId} rxData={this.props.rxData} handleAddRx={this.handleAddRx}/>
+                <OtcChecker rxData={this.props.rxData}/>
             </div>
         )
     }
 }
 
-export default MyMedsDisplay;
+export default connect(null, mapDispatchToProps)(MyMedsDisplay);

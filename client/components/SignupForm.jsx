@@ -11,11 +11,11 @@ class SignupForm extends Component {
         }
     }
     // Update the state to the contents of the form
-    handleChange = (event) => {
-        const label = event.target.getAttribute('label');
-        const value = event.target.value;
-        this.setState({ [label]: value });
-    };
+    // handleChange = (event) => {
+    //     const label = event.target.getAttribute('label');
+    //     const value = event.target.value;
+    //     this.setState({ [label]: value });
+    // };
     // Send the form data to the backend to create a new user account // Post request
     handleSubmit = () => {
         const body = {...this.state};
@@ -39,8 +39,8 @@ class SignupForm extends Component {
                 {this.state.auth ? <Redirect to='/'/> : null}
                 <div id='SignupForm'>
                     <h2>Create A New Account</h2>
-                    <p id='username'>Username<input onChange={this.handleChange} label='username'></input></p>
-                    <p id='password'>Password<input type='password' onChange={this.handleChange} label='password'></input></p> 
+                    <p id='username'>Username<input onChange={(e) => this.setState({username: e.target.value})} label='username'></input></p>
+                    <p id='password'>Password<input type='password' onChange={(e) => this.setState({password: e.target.value})} label='password'></input></p> 
                     <button type="submit" onClick={() => {this.handleSubmit()}}>Create Account</button>
                 </div>
             </>

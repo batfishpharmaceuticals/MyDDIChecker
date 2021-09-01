@@ -7,15 +7,15 @@ class OtcChecker extends Component {
         input: '',
         alert: null
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleResetAlert = this.handleResetAlert.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleResetAlert = this.handleResetAlert.bind(this);
   }
 
-  handleChange = (event) => {
-    const label = event.target.getAttribute('label');
-    const value = event.target.value;
-    this.setState({ [label]: value });
-  };
+  // handleChange = (event) => {
+  //   const label = event.target.getAttribute('label');
+  //   const value = event.target.value;
+  //   this.setState({ [label]: value });
+  // };
 
   handleOtcSubmit(rx, otc) {
     const options = {
@@ -31,22 +31,22 @@ class OtcChecker extends Component {
         .catch(err => console.log('OtcChecker.handleOtcSubmit: get status: ERROR: ', err));
     }
 
-    handleResetAlert = () => {
-        this.setState({ alert: null });
-    }
+    // handleResetAlert = () => {
+    //     this.setState({ alert: null });
+    // }
 
   render() {
     if (this.state.alert === false) {
         window.alert('No interactions found')
-        this.handleResetAlert();
+        this.setState({ alert: null });
     }
     else if (this.state.alert === true) {
         window.alert('Interactions found - Product not recommended')
-        this.handleResetAlert();
+        this.setState({ alert: null });
     }
     return (
       <div id="OtcCheckerBox">
-        <input type="text" onChange={this.handleChange} label="input"/>
+        <input type="text" onChange={(e) => this.setState({ input: e.target.value })} label="input"/>
         <button type="submit" onClick={() => this.handleOtcSubmit(this.props.rxData, this.state.input)}>Check For Interactions</button> 
       </div>
     );
