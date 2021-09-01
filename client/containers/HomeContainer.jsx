@@ -23,23 +23,10 @@ class HomeContainer extends Component {
         super(props);
         this.state = {
             view: false,
-            // userId: '',
-            // rxData: []
         }
-        // this.homeHandleClick = this.homeHandleClick.bind(this);
-        // this.formHandleClick = this.formHandleClick.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     }
     
-    // Set state to home
-    // homeHandleClick = () => {
-    //     this.setState({ view: 'home' });
-    // }
-    // // Set state to form
-    // formHandleClick = () => {
-    //     this.setState({ view: 'form' });
-    // }
-    // Send post request to the backend when the login button is clicked
     handleLoginSubmit = (username, password) => {
         const body = {username, password};
         fetch('/user/login', {
@@ -51,12 +38,10 @@ class HomeContainer extends Component {
         })
           .then(res => res.json())
           .then((res) => {
-              console.log('hello it me loginSubmit')
               if (res.match === true) {
                 this.props.updateUserId(res.id, res.rxs);
                 this.setState({ view: true });
               }
-            //   if (res.match === true) this.setState({ view: true, userId: res.id, rxData: res.rxs });
           })
           .catch(err => console.log('LoginButton.handleLoginSubmit: get status: ERROR: ', err));
     };
@@ -82,31 +67,6 @@ class HomeContainer extends Component {
                 </Switch>
             </>
         )
-        
-
-        // if (this.state.view === 'home') { // This is the landing page with our login components and sign up button
-        //     return (
-        //         <div id='HomePage'>
-        //             <h2>Welcome</h2>
-        //             <LoginButton handleLoginSubmit={this.handleLoginSubmit}/>
-        //             <SignupButton formHandleClick={this.formHandleClick}/>
-        //         </div>
-        //     );
-        // }
-        // else if (this.state.view === 'form') { // This is the sign up form to create a new account
-        //     return (
-        //         <div>
-        //             <SignupForm homeHandleClick={this.homeHandleClick}/>
-        //         </div>
-        //     );
-        // }
-        // else if (this.state.view === 'display') { // This is the main app
-        //     return (
-        //         <div>
-        //             <MyMedsDisplay userId={this.state.userId} rxData={this.state.rxData}/>
-        //         </div>
-        //     )
-        // }
     }
 }
 

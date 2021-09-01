@@ -20,6 +20,16 @@ const medsReducer = (state = initialState, action) => {
         rxData: [...state.rxData, action.payload]
       }
     }
+    case types.DELETE_RX: {
+      console.log('got into delete action');
+      const newArr = state.rxData.filter((el) => {
+        return (el.name !== action.payload);
+      })
+      return {
+        ...state,
+        rxData: newArr
+      }
+    }
     default:
         return state;
   }

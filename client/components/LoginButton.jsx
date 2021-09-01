@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { useHistory } from 'react-router-dom'; 
 
 class LoginButton extends Component {
   constructor(props) {
@@ -8,15 +7,7 @@ class LoginButton extends Component {
           username: '',
           password: ''
       }
-    //   const history = useHistory();
-      // history.push('/form')
   }
-
-//   handleChange = (event) => {
-//       const label = event.target.getAttribute('label');
-//       const value = event.target.value;
-//       this.setState({ [label]: value });
-//   };
 
   render() {
       return (
