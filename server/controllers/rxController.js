@@ -9,7 +9,7 @@ rxController.getRx = async (req, res, next) => {
 
     let { rx } = res.locals;
 
-    if (rx === undefined) rx = req.body.rx
+    if (rx === undefined) rx = req.body.rx;
 
     const foundRxs = [];
     for (let i = 0; i < rx.length; i++) {
@@ -19,9 +19,7 @@ rxController.getRx = async (req, res, next) => {
       }
       foundRxs.push(result);
     }
-
     res.locals.rxs = foundRxs;
-
     return next();
   } catch (err) {
     return next({ err })

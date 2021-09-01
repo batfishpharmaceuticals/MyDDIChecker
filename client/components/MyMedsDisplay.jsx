@@ -19,7 +19,9 @@ class MyMedsDisplay extends Component {
 
     handleChange = (event) => {
         const label = event.target.getAttribute('label');
+        console.log('label', label);
         const value = event.target.value;
+        // [label] is this.state.rxInput
         this.setState({ [label]: value });
     };
 

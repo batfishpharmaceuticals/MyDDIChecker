@@ -6,8 +6,7 @@
   "scripts": {
     "start": " cross-env NODE_ENV=production nodemon --exec babel-node server/server.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve --open\"  \"nodemon server/server.js\"",
-    "test-front": "jest --verbose --updateSnapshot"
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve --open\"  \"nodemon --exec babel-node server/server.js\""
   },
   "repository": {
     "type": "git",
@@ -34,6 +33,7 @@
     "nodemon": "^2.0.12",
     "react-test-renderer": "^17.0.2",
     "style-loader": "^3.2.1",
+    "supertest": "^6.1.6",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.0.0",
     "webpack-hot-middleware": "^2.25.0"
