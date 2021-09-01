@@ -5,7 +5,7 @@ const SignupButton = props => {
     return (
         <div id='SignupButton'>
             <Link to={'/signup'}>
-                <button onClick={props.formHandleClick}>Sign Up</button>
+                <button>Sign Up</button>
             </Link>
         </div>
     );

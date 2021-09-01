@@ -4,14 +4,27 @@ import LoginButton from '../components/LoginButton.jsx';
 import SignupButton from '../components/SignupButton.jsx';
 import SignupForm from '../components/SignupForm.jsx';
 import MyMedsDisplay from '../components/MyMedsDisplay.jsx';
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
+
+const mapStateToProps = (state) => ({
+    userId: state.meds.userId,
+    rxData: state.meds.rxData
+});
+
+const mapDispatchToProps = dispatch => ({
+    updateUserId: (userId, rxData) => {
+        dispatch(actions.handleLoginUser(userId, rxData));
+    }
+});
 
 class HomeContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             view: false,
-            userId: '',
-            rxData: []
+            // userId: '',
+            // rxData: []
         }
         // this.homeHandleClick = this.homeHandleClick.bind(this);
         // this.formHandleClick = this.formHandleClick.bind(this);
@@ -39,7 +52,11 @@ class HomeContainer extends Component {
           .then(res => res.json())
           .then((res) => {
               console.log('hello it me loginSubmit')
-              if (res.match === true) this.setState({ view: true, userId: res.id, rxData: res.rxs });
+              if (res.match === true) {
+                this.props.updateUserId(res.id, res.rxs);
+                this.setState({ view: true });
+              }
+            //   if (res.match === true) this.setState({ view: true, userId: res.id, rxData: res.rxs });
           })
           .catch(err => console.log('LoginButton.handleLoginSubmit: get status: ERROR: ', err));
     };
@@ -53,15 +70,14 @@ class HomeContainer extends Component {
                         <div id='HomePage'>
                             <h2>Welcome</h2>
                             <LoginButton handleLoginSubmit={this.handleLoginSubmit}/>
-                            <SignupButton formHandleClick={this.formHandleClick}/>
+                            <SignupButton />
                         </div>
                     </Route>
                     <Route exact path='/signup'>
-                        <SignupForm homeHandleClick={this.homeHandleClick}/>
+                        <SignupForm />
                     </Route>
                     <Route exact path='/home'>
-                        <div>Hello</div>
-                        <MyMedsDisplay userId={this.state.userId} rxData={this.state.rxData}/>
+                        <MyMedsDisplay userId={this.props.userId} rxData={this.props.rxData}/>
                     </Route>
                 </Switch>
             </>
@@ -94,4 +110,4 @@ class HomeContainer extends Component {
     }
 }
 
-export default withRouter(HomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

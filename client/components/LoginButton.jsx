@@ -12,17 +12,17 @@ class LoginButton extends Component {
       // history.push('/form')
   }
 
-  handleChange = (event) => {
-      const label = event.target.getAttribute('label');
-      const value = event.target.value;
-      this.setState({ [label]: value });
-  };
+//   handleChange = (event) => {
+//       const label = event.target.getAttribute('label');
+//       const value = event.target.value;
+//       this.setState({ [label]: value });
+//   };
 
   render() {
       return (
           <div id='LoginBox'>
-              <p id='username'>Username<input onChange={this.handleChange} label='username'></input></p>
-              <p id='password'>Password <input type='password' onChange={this.handleChange} label='password'></input></p> 
+              <p id='username'>Username<input onChange={(e) => this.setState({username: e.target.value})} label='username'></input></p>
+              <p id='password'>Password<input type='password' onChange={(e) => this.setState({password: e.target.value})} label='password'></input></p> 
               <button id="LoginButton" type="submit" onClick={() => this.props.handleLoginSubmit(this.state.username, this.state.password)}>Login</button>
           </div>
       )
