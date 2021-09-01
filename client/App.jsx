@@ -6,7 +6,11 @@ class App extends Component {
         super(props);
     }
     render() {
-        return <div><HomeContainer /></div>
+        return (
+        <div>
+            <HomeContainer />
+        </div>
+        )
     }
 };
 
