@@ -75,19 +75,16 @@ userController.addRx = async (req, res, next) => {
 
 userController.deleteRx = async (req, res, next) => {
   try {
-    console.log("deleteRx user!")
-    const { id } = req.body;
-    
+    const { medData, userId } = req.body;
     const user = await User.findOneAndUpdate( 
-      {username}, 
+      {_id: userId}, 
       {$pull: {
-        rxs: {rxId: id}
+        rxs: {name: medData}
       }}, 
-      {new: true}).exec();
-    
+      {new: true});
     return next();
-
   } catch (err) {
+    console.log('error out in UserController.deleteRx')
     return next({ err })
   }
 };

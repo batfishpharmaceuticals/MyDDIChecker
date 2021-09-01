@@ -9,3 +9,10 @@ export const AddRx = (rxInput) => ({
   type: types.ADD_RX,
   payload: rxInput,
 });
+
+export const deleteRx = (medData) => {
+  console.log('delete action')
+  return {
+  type: types.DELETE_RX,
+  payload: medData,
+}};

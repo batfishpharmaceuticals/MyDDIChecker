@@ -33,10 +33,11 @@ router.post('/addRx',
   res.status(200).json( res.locals.id );
 })
 
-router.post('/deleteRx', 
+router.patch('/deleteRx', 
   userController.deleteRx, 
   (req, res) => {
-  res.status(200).send('Deleted!');
-})
+    return res.sendStatus(200);
+  }
+)
 
 export default router;

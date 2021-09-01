@@ -2,7 +2,6 @@ import React from 'react';
 import Med from './Med.jsx';
 
 const MyMedList = props => {
-    // console.log(props.userId);
     const { rxData } = props;
     const medList = [];
     if (rxData.length != 0) {

@@ -7,15 +7,7 @@ class OtcChecker extends Component {
         input: '',
         alert: null
     }
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleResetAlert = this.handleResetAlert.bind(this);
   }
-
-  // handleChange = (event) => {
-  //   const label = event.target.getAttribute('label');
-  //   const value = event.target.value;
-  //   this.setState({ [label]: value });
-  // };
 
   handleOtcSubmit(rx, otc) {
     const options = {
@@ -31,17 +23,13 @@ class OtcChecker extends Component {
         .catch(err => console.log('OtcChecker.handleOtcSubmit: get status: ERROR: ', err));
     }
 
-    // handleResetAlert = () => {
-    //     this.setState({ alert: null });
-    // }
-
   render() {
     if (this.state.alert === false) {
-        window.alert('No interactions found')
+        window.alert('No interactions found');
         this.setState({ alert: null });
     }
     else if (this.state.alert === true) {
-        window.alert('Interactions found - Product not recommended')
+        window.alert('Interactions found - Product not recommended');
         this.setState({ alert: null });
     }
     return (
@@ -52,6 +40,5 @@ class OtcChecker extends Component {
     );
   }
 }
-
 
 export default OtcChecker;

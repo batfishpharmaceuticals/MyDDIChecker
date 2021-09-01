@@ -10,13 +10,7 @@ class SignupForm extends Component {
             auth: false
         }
     }
-    // Update the state to the contents of the form
-    // handleChange = (event) => {
-    //     const label = event.target.getAttribute('label');
-    //     const value = event.target.value;
-    //     this.setState({ [label]: value });
-    // };
-    // Send the form data to the backend to create a new user account // Post request
+    
     handleSubmit = () => {
         const body = {...this.state};
         fetch('/user/signUp', {
