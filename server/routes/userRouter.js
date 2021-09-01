@@ -26,13 +26,15 @@ router.post('/logout',
   res.status(200).send('Logged out!');
 })
 
-router.post('/addRx', rxController.getRx, 
+router.post('/addRx', 
+  rxController.getRx, 
   userController.addRx, 
   (req, res) => {
   res.status(200).json( res.locals.id );
 })
 
-router.post('/deleteRx', userController.deleteRx, 
+router.post('/deleteRx', 
+  userController.deleteRx, 
   (req, res) => {
   res.status(200).send('Deleted!');
 })
