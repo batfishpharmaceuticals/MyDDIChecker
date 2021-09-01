@@ -17,7 +17,7 @@ import HomeContainer from '../client/containers/HomeContainer';
 // Newer Enzyme versions require an adapter to a particular version of React
 configure({ adapter: new Adapter() });
 
-describe('React unit tests', () => {
+xdescribe('React unit tests', () => {
   // Testing the functionality of Login Button Component
   describe('LoginButton', () => {
     let wrapper;

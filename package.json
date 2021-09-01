@@ -6,7 +6,8 @@
   "scripts": {
     "start": " cross-env NODE_ENV=production nodemon --exec babel-node server/server.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve --open\"  \"nodemon --exec babel-node server/server.js\""
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve --open\"  \"nodemon --exec babel-node server/server.js\"",
+    "test": "jest --verbose --updateSnapshot"
   },
   "repository": {
     "type": "git",

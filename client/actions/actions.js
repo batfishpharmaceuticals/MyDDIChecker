@@ -5,7 +5,7 @@ export const handleLoginUser = (userId, rxData) => ({
   payload: { userId, rxData },
 });
 
-export const AddRx = (rxInput) => ({
+export const addRx = (rxInput) => ({
   type: types.ADD_RX,
   payload: rxInput,
 });
