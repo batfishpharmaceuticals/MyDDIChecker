@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Route, Switch } from 'react-router';
+import { withRouter, Route, Switch, Redirect } from 'react-router';
 import LoginButton from '../components/LoginButton.jsx';
 import SignupButton from '../components/SignupButton.jsx';
 import SignupForm from '../components/SignupForm.jsx';
@@ -13,8 +13,8 @@ class HomeContainer extends Component {
             userId: '',
             rxData: []
         }
-        this.homeHandleClick = this.homeHandleClick.bind(this);
-        this.formHandleClick = this.formHandleClick.bind(this);
+        // this.homeHandleClick = this.homeHandleClick.bind(this);
+        // this.formHandleClick = this.formHandleClick.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     }
     
@@ -60,6 +60,7 @@ class HomeContainer extends Component {
                         <SignupForm homeHandleClick={this.homeHandleClick}/>
                     </Route>
                     <Route exact path='/home'>
+                        <div>Hello</div>
                         <MyMedsDisplay userId={this.state.userId} rxData={this.state.rxData}/>
                     </Route>
                 </Switch>
