@@ -64,7 +64,8 @@ userController.addRx = async (req, res, next) => {
       {$push: {
         rxs: {name: rx[0], rxId: id}
       }}, 
-      {new: true}).exec();
+      {new: true}
+    ).exec();
 
     res.locals.id = id;
     

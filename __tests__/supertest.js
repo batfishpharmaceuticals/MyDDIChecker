@@ -1,7 +1,7 @@
 const request = require('supertest');
 const server = 'http://localhost:3000';
 
-describe('Route integration', () => {
+xdescribe('Route integration', () => {
   describe('/user', () => {
     // currently x'd so that it doesnt create alot of new users
     xdescribe('/signUp', () => {
