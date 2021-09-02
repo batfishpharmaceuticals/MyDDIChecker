@@ -11,7 +11,6 @@ export const addRx = (rxInput) => ({
 });
 
 export const deleteRx = (medData) => {
-  console.log('delete action')
   return {
   type: types.DELETE_RX,
   payload: medData,

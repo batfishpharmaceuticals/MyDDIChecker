@@ -12,22 +12,15 @@ const mapDispatchToProps = dispatch => ({
 
 const Med = props => {
     const { medData } = props;
-
-    // Button logic to remove an Rx
     function handleDeleteRx() {
-        // Remove Rx from db
         const options = {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ medData: medData, userId: props.userId })
         };
         fetch('/user/deleteRx', options)
-            // .then(res => res.json())
             .then(res => {
                 console.log('res:', res);
-                // this.setState(prevState => ({
-                //    rxData: prevState.filter(rx => (rx._id !== rxId)) 
-                // }))
                 if (res.status === 200) {
                     props.deleteRx(medData);
                 }

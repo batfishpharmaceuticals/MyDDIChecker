@@ -5,7 +5,9 @@ const userController = {};
 userController.createUser = async (req, res, next) => {
   try {
     const { username, password } = req.body;
+    console.log('got before await');
     await User.create({ username, password, rxs: []})
+    console.log('after await')
     return next();
   } catch (err) {
     return next({ err })
