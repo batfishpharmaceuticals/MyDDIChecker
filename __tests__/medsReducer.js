@@ -1,6 +1,6 @@
 import medsReducer from '../client/reducers/medsReducer';
 
-describe('meds reducer', () => {
+xdescribe('meds reducer', () => {
   let state;
 
   beforeEach(() => {

@@ -21,7 +21,7 @@ class OtcChecker extends Component {
             this.setState({ input: '', alert: res })
         })
         .catch(err => console.log('OtcChecker.handleOtcSubmit: get status: ERROR: ', err));
-    }
+  }
 
   render() {
     if (this.state.alert === false) {

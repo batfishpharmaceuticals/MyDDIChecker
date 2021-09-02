@@ -70,21 +70,18 @@ xdescribe('React unit tests', () => {
     it('The main wrapper should be a div', () => {
       expect(wrapper.type()).toEqual('div');
     });
-    // 2. It should also contain a div with one button
-    it('A button should exist within the main wrapper', () => {
-      const buttons = wrapper.find('button');
-      // console.log(buttons);
+    // 2. A button should exist within react router Link'
+    it('A button should exist within react router Link', () => {
+      const buttons = wrapper.find('Link').children().at(0);
       expect(buttons.length).toBe(1);
       buttons.forEach((node) => {
-        expect(node.parent().is('div')).toBe(true);
+        expect(node.parent().is('Link')).toBe(true);
       });
     });
-    // 3. The functions passed down should be invoked on click
-    it('Clicking the button should invoke formHandleClick', () => {
-      wrapper.find('button').at(0).simulate('click');
-      expect(props.formHandleClick).toHaveBeenCalled();
+    // 3. The react router Link should have a to prop equal to "/signup"
+    it('The react router Link should have a to prop equal to "/signup"', () => {
+      expect(wrapper.find('Link').props().to).toEqual('/signup');
     });
-    
   });
 
   describe('Med', () => {
@@ -118,7 +115,7 @@ xdescribe('React unit tests', () => {
   });
 
 
-  describe('MyMedList', () => {
+  xdescribe('MyMedList', () => {
     // TODO: Test the following:
     let wrapper;
     const props = {
@@ -167,7 +164,7 @@ xdescribe('React unit tests', () => {
     });
   });
 
-  describe('OtcChecker', () => {
+  xdescribe('OtcChecker', () => {
     let wrapper;
     global.fetch = jest.fn(() => {
       Promise.resolve({
