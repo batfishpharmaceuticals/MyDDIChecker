@@ -2,6 +2,10 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 // import toJson from 'enzyme-to-json';
+import configureStore from 'redux-mock-store';
+import { Provider } from 'react-redux';
+import renderer from 'react-test-renderer';
+
 
 // Enzyme is a wrapper around React test utilities which makes it easier to
 // shallow render and traverse the shallow rendered tree.
@@ -17,7 +21,10 @@ import HomeContainer from '../client/containers/HomeContainer';
 // Newer Enzyme versions require an adapter to a particular version of React
 configure({ adapter: new Adapter() });
 
-xdescribe('React unit tests', () => {
+// mock store for redux testing
+const mockStore = configureStore([]);
+
+describe('React unit tests', () => {
   // Testing the functionality of Login Button Component
   describe('LoginButton', () => {
     let wrapper;
@@ -85,48 +92,83 @@ xdescribe('React unit tests', () => {
   });
 
   describe('Med', () => {
+
     // TODO: Test the following:
-    let wrapper;
+    // let wrapper;
+    let store;
+    let component;
+    // let dispatch;
+
     const props = {
       medData: 'test',
+      deleteRx: jest.fn()
     };
 
     beforeAll(() => {
-      wrapper = shallow(<Med {...props} />);
+      const initialState = { meds: {
+        userId: '',
+        rxData: [],
+      }}
+      store = mockStore(initialState);
+      
+      // dispatch = store.dispatch;
+      // store.dispatch = jest.fn(dispatch);
+      // global.fetch = jest.fn(() => {
+      //   Promise.resolve({
+      //     status: 200
+      //   });
+      // })
+      jest.spyOn(global, "fetch").mockImplementation(() => 
+        Promise.resolve({
+          status: 200
+        }));
+        
+      // wrapper = shallow()
+      component = renderer.create(
+        <Provider store={store}>
+          <Med {...props}/>
+        </Provider>
+      )
     });
 
     // the main wrapper should be a div
     it('main wrapper should be a div', () => {
-      expect(wrapper.type()).toEqual('div');
+      // initialize mockstore with initial state
+        expect(component.toJSON().type).toEqual('div');
     });
 
     // the main div should have a child div
     it('main div should have a child div', () => {
-      const mainDiv = wrapper.find('div').first();
-      expect(mainDiv.children().is('div')).toBe(true);
-      // expect(wrapper.find('div').length).toBe(1);
+      expect(component.toJSON().children[0].type).toEqual('div');
     });
     
     //  Div should render data from props medData  
     it('Child div should render data in props.medData', () => {
-      const childDiv = wrapper.find('div').first().children();
-      expect(childDiv.text()).toEqual('test');
+      expect(component.toJSON().children[0].children[0]).toEqual('test');
     });
+    // it('When button gets clicked it should invoke the dispatch', () => {
+    //   renderer.act(() => {
+    //     component.root.findByType('button').props.onClick();
+    //   })
+    //   console.log(store.dispatch)
+    //   expect(props.deleteRx).toHaveBeenCalledTimes(1);
+    // });
   });
 
 
-  xdescribe('MyMedList', () => {
+  describe('MyMedList', () => {
     // TODO: Test the following:
     let wrapper;
-    const props = {
-      rxData: [{
-        name: 'Philip'
-      }],
-      handleChange: jest.fn(),
-      handleAddRx: jest.fn()
-    };
+    let props;
 
     beforeAll(() => {
+      props = {
+        rxData: [{
+          name: 'Philip'
+        }],
+        handleChange: jest.fn(),
+        handleAddRx: jest.fn()
+      };
       wrapper = shallow(<MyMedList {...props} />);
     });
 
@@ -146,7 +188,7 @@ xdescribe('React unit tests', () => {
     });
 
     //  Div should render a Med component 
-    it('Child div should render Med component', () => {
+    xit('Child div should render Med component', () => {
       // const childDiv = wrapper.find('Med').length;
       const med = wrapper.find('Med');
       expect(med.length).toBe(1);
@@ -180,7 +222,7 @@ xdescribe('React unit tests', () => {
     }
 
     beforeAll(() => {
-      wrapper = shallow(<MyMedList {...props} />);
+      // wrapper = shallow(<MyMedList {...props} />);
     });
 
     // the main wrapper should be a div
@@ -201,8 +243,6 @@ xdescribe('React unit tests', () => {
     xit('input handleChange should change the state of the wrapper', () => {
       const spy = jest.spyOn(wrapper.instance(), 'handleChange')
     })
-
-
 
   });
 

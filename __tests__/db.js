@@ -5,7 +5,7 @@ import Rx from '../server/models/rxModel';
 import "regenerator-runtime/runtime";
 import mongoose from 'mongoose';
 
-describe('User', () => {
+xdescribe('User', () => {
   let username;
   let password;
   let rxs;
@@ -92,7 +92,7 @@ describe('User', () => {
   })
 })
 
-describe('Rx', () => {
+xdescribe('Rx', () => {
   let rx;
   
   /*Before any tests begin, connect to the MongoDB "DDI" connection 
