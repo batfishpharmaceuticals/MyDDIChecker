@@ -24,7 +24,7 @@ configure({ adapter: new Adapter() });
 // mock store for redux testing
 const mockStore = configureStore([]);
 
-describe('React unit tests', () => {
+xdescribe('React unit tests', () => {
   // Testing the functionality of Login Button Component
   describe('LoginButton', () => {
     let wrapper;
@@ -62,7 +62,7 @@ describe('React unit tests', () => {
   });
 
   // Tests for Sign Up Button Component
-  describe('SignupButton', () => {
+  xdescribe('SignupButton', () => {
     let wrapper;
     // TODO: Test the following:
     const props = {
@@ -91,7 +91,7 @@ describe('React unit tests', () => {
     });
   });
 
-  describe('Med', () => {
+  xdescribe('Med', () => {
 
     // TODO: Test the following:
     // let wrapper;
@@ -156,7 +156,7 @@ describe('React unit tests', () => {
   });
 
 
-  describe('MyMedList', () => {
+  xdescribe('MyMedList', () => {
     // TODO: Test the following:
     let wrapper;
     let props;

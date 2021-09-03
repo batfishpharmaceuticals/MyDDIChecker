@@ -14,25 +14,25 @@ const userSchema = new Schema({
   }]
 });
 
-// userSchema.pre('save', async function(next) {
-//   try {
-//     const hash = await bcrypt.hash(this.password, SALT_WORK_FACTOR);
-//     this.password = hash;
+userSchema.pre('save', async function(next) {
+  try {
+    const hash = await bcrypt.hash(this.password, SALT_WORK_FACTOR);
+    this.password = hash;
 
-//     return next();
-//   } catch (err) {
-//     return next({ err });
-//   }
-// });
+    return next();
+  } catch (err) {
+    return next({ err });
+  }
+});
 
-// userSchema.methods.comparePasswords = async function (input, stored) {
-//   try {
-//     return await bcrypt.compare(input, stored);
+userSchema.methods.comparePasswords = async function (input, stored) {
+  try {
+    return await bcrypt.compare(input, stored);
     
-//   } catch (err) {
-//     return next({ err });
-//   }
-// };
+  } catch (err) {
+    return next({ err });
+  }
+};
 
 const User = mongoose.model('user', userSchema);
 
