@@ -52,7 +52,7 @@ xdescribe('meds reducer', () => {
 
 });
 
-describe('DELETE_RX', () => {
+xdescribe('DELETE_RX', () => {
   let state;
 
   beforeEach(() => {

@@ -20,7 +20,6 @@ const Med = props => {
         };
         fetch('/user/deleteRx', options)
             .then(res => {
-                console.log('res:', res);
                 if (res.status === 200) {
                     props.deleteRx(medData);
                 }

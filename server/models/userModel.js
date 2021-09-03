@@ -12,7 +12,7 @@ const userSchema = new Schema({
     rxId: String,
     name: String
   }]
-})
+});
 
 userSchema.pre('save', async function(next) {
   try {

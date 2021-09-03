@@ -5,9 +5,7 @@ const userController = {};
 userController.createUser = async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    console.log('got before await');
     await User.create({ username, password, rxs: []})
-    console.log('after await')
     return next();
   } catch (err) {
     return next({ err })
@@ -48,12 +46,19 @@ userController.verifyUser = async (req, res, next) => {
 
 userController.logOut = async (req, res, next) => {
   try {
-    console.log('Logging user out!')
     return next();
   } catch (err) {
     return next({ err })
   }
 };
+
+// userController.checkRxExists = async (req, res, next) => {
+//   try {
+
+//   } catch (err) {
+//     return next({ err });
+//   }
+// }
 
 userController.addRx = async (req, res, next) => {
   try {
@@ -64,7 +69,8 @@ userController.addRx = async (req, res, next) => {
       {$push: {
         rxs: {name: rx[0], rxId: id}
       }}, 
-      {new: true}).exec();
+      {new: true}
+    ).exec();
 
     res.locals.id = id;
     
@@ -74,6 +80,7 @@ userController.addRx = async (req, res, next) => {
     return next({ err })
   }
 };
+
 
 userController.deleteRx = async (req, res, next) => {
   try {
@@ -86,7 +93,6 @@ userController.deleteRx = async (req, res, next) => {
       {new: true});
     return next();
   } catch (err) {
-    console.log('error out in UserController.deleteRx')
     return next({ err })
   }
 };

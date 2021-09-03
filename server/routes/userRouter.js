@@ -27,7 +27,8 @@ router.post('/logout',
 })
 
 router.post('/addRx', 
-  rxController.getRx, 
+  rxController.getRx,
+  // userController.checkRxExists,
   userController.addRx, 
   (req, res) => {
   res.status(200).json( res.locals.id );

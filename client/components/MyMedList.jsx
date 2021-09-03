@@ -11,8 +11,8 @@ const MyMedList = props => {
     }
     return (
         <div id='medListBox'>
-            <div>{medList}</div>
-            <input type='text' onChange={props.handleChange} label='rxInput'/>
+            <div id="outerMedBox">{medList}</div>
+            <input id="medInput" type='text' onChange={props.handleChange} label='rxInput' placeholder="Enter medication"/>
             <button id='addMedButton' onClick={() => {props.handleAddRx(props.userId, props.rxInput)}}>Add Med</button>
         </div>
     );

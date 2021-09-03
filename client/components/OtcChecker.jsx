@@ -18,7 +18,8 @@ class OtcChecker extends Component {
     fetch('/rx', options)
         .then(res => res.json())
         .then(res => {
-            this.setState({ input: '', alert: res })
+            this.setState({ input: '', alert: res });
+            document.getElementById('otcInput').value = '';
         })
         .catch(err => console.log('OtcChecker.handleOtcSubmit: get status: ERROR: ', err));
   }
@@ -34,7 +35,7 @@ class OtcChecker extends Component {
     }
     return (
       <div id="OtcCheckerBox">
-        <input type="text" onChange={(e) => this.setState({ input: e.target.value })} label="input"/>
+        <input id="otcInput" type="text" onChange={(e) => this.setState({ input: e.target.value })} label="input" placeholder="Enter interaction"/>
         <button type="submit" onClick={() => this.handleOtcSubmit(this.props.rxData, this.state.input)}>Check For Interactions</button> 
       </div>
     );

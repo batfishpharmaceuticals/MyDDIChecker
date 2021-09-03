@@ -18,6 +18,13 @@ class MyMedsDisplay extends Component {
     }
     
     handleAddRx(userId, ...rx) {
+        // loop over each of the drugs currently in rxData
+            // if the array does not include the drug typed in, then run the post request
+        const found = this.props.rxData.find(obj => obj.name === rx[0]);
+        if (found) {
+            window.alert('Rx already exists.');
+            return;
+        } 
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -27,6 +34,7 @@ class MyMedsDisplay extends Component {
             .then(res => res.json())
             .then(res => {
                 this.props.addRx({name: rx[0], id: res.id});
+                document.getElementById('medInput').value = '';
             })
             .catch(err => console.log('MyMedsDisplay.handleAddRx: get status: ERROR: ', err));
     }

@@ -12,8 +12,8 @@ class LoginButton extends Component {
   render() {
       return (
           <div id='LoginBox'>
-              <p id='username'>Username<input onChange={(e) => this.setState({username: e.target.value})} label='username'></input></p>
-              <p id='password'>Password<input type='password' onChange={(e) => this.setState({password: e.target.value})} label='password'></input></p> 
+              <input onChange={(e) => this.setState({username: e.target.value})} label='username' placeholder="Username"></input>
+              <input type='password' onChange={(e) => this.setState({password: e.target.value})} label='password' placeholder="Password"></input>
               <button id="LoginButton" type="submit" onClick={() => this.props.handleLoginSubmit(this.state.username, this.state.password)}>Login</button>
           </div>
       )
